@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set OMP_NUM_THREADS=4
+export OMP_NUM_THREADS=4
 
 dir_path=`find ~/Documents/ -name PDE-ODEsolver -type d`
 curr_dir=`pwd`
