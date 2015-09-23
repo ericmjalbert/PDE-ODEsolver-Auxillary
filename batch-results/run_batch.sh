@@ -72,10 +72,45 @@ bash twoDimension_runall_paral.sh parameter.txt >> runtime_stdout.log
 mv runtime_stdout.log parameterParalOutput
 mv parameterParalOutput $curr_dir/out-p1025
 
-sed -i '4s/.*/pSize     = 2049/' ./parameter.txt
-bash twoDimension_runall_paral.sh parameter.txt >> runtime_stdout.log
-mv runtime_stdout.log parameterParalOutput
-mv parameterParalOutput $curr_dir/out-p2049
+sed -i '4s/.*/psize     = 2049/' ./parameter.txt
+bash twodimension_runall_paral.sh parameter.txt >> runtime_stdout.log
+mv runtime_stdout.log parameterparaloutput
+mv parameterparaloutput $curr_dir/out-p2049
+
+# Fully-implicit tolerance 
+sed -i '4s/.*/psize     = 513/' ./parameter.txt
+
+sed -i '21s/.*/eSoln     = 1.0e-0' ./parameter.txt
+bash twodimension_runall_paral.sh parameter.txt >> runtime_stdout.log
+mv runtime_stdout.log parameterparaloutput
+mv parameterparaloutput $curr_dir/out-eSoln-0
+
+sed -i '21s/.*/eSoln     = 1.0e-2' ./parameter.txt
+bash twodimension_runall_paral.sh parameter.txt >> runtime_stdout.log
+mv runtime_stdout.log parameterparaloutput
+mv parameterparaloutput $curr_dir/out-eSoln-2
+
+sed -i '21s/.*/eSoln     = 1.0e-4' ./parameter.txt
+bash twodimension_runall_paral.sh parameter.txt >> runtime_stdout.log
+mv runtime_stdout.log parameterparaloutput
+mv parameterparaloutput $curr_dir/out-eSoln-4
+
+sed -i '21s/.*/eSoln     = 1.0e-6' ./parameter.txt
+bash twodimension_runall_paral.sh parameter.txt >> runtime_stdout.log
+mv runtime_stdout.log parameterparaloutput
+mv parameterparaloutput $curr_dir/out-eSoln-6
+
+sed -i '21s/.*/eSoln     = 1.0e-8' ./parameter.txt
+bash twodimension_runall_paral.sh parameter.txt >> runtime_stdout.log
+mv runtime_stdout.log parameterparaloutput
+mv parameterparaloutput $curr_dir/out-eSoln-8
+
+sed -i '21s/.*/eSoln     = 1.0e-10' ./parameter.txt
+bash twodimension_runall_paral.sh parameter.txt >> runtime_stdout.log
+mv runtime_stdout.log parameterparaloutput
+mv parameterparaloutput $curr_dir/out-eSoln-10
+
+
 
 cd $curr_dir
 
