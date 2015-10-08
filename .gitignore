@@ -1,3 +1,4 @@
 /batch-results/out*
 /gen-figures/Figures
-
+/error-cal/out*
+*.tmp
