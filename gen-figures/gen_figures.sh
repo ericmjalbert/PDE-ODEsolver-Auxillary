@@ -8,5 +8,7 @@ bash run_basic_trav_wave.sh
 bash run_basic_spherical.sh
 bash run_basic_growth.sh
 bash run_converge_spatial.sh
+bash run_results_table.sh
 
-mv Figures $dir_path
+mv Figures/* $dir_path
+rm -r Figures
