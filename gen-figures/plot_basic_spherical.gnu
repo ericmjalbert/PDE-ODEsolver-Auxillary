@@ -8,6 +8,8 @@ set pm3d
 set view map
 unset surf
 
+set zr[0.00001:1]
+
 set terminal post eps color enhanced font ',18'
 
 set output "basic_spherical_M_t0.eps"
