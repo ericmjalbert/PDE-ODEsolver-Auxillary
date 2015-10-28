@@ -1,7 +1,7 @@
 !----------------------------------------------------------------------
 ! Parameters
 !----------------------------------------------------------------------
-pSize     = 513 
+pSize     = 1025 
 true2D    = 1             ! if 1 then prob is 2D, otherwise 3D  
 depth     = 0.0390625     ! depth of innoculation site
 height    = 0.10          ! height of innoculation site
@@ -14,7 +14,7 @@ gama      = 0.50
 delta     = 0.00000001
 nOuts     = 20
 tEnd      = 40
-tDel      = 0.001         ! Change in time
+tDel      = 0.0001         ! Change in time
 xDel      = 1/real(row)   ! Change in x
 e1        = 1.0e-8       ! Error 1 tolerence (linear solver)
 e2        = 1.0e-8       ! Error 2 tolerence (linear solver)

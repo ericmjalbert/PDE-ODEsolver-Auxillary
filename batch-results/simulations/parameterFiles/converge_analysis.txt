@@ -1,7 +1,7 @@
 !----------------------------------------------------------------------
 ! Parameters
 !----------------------------------------------------------------------
-pSize     = 513 
+pSize     = 1025 
 true2D    = 1             ! if 1 then prob is 2D, otherwise 3D  
 depth     = 0.0390625     ! depth of innoculation site
 height    = 0.10          ! height of innoculation site

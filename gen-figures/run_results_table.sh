@@ -6,7 +6,8 @@ curr_dir=`pwd`
 
 cd $batch_dir
  tolA=`sed '21q;d'     out-eSoln-0e/parameter.txt | awk '{print $3}'`
-iterA=`sed '5q;d'     out-eSoln-0e/statReport.dat | awk '{print $8}'`
+ # That last awk truncates to 8 decimal places.
+ iterA=`sed '5q;d'     out-eSoln-0e/statReport.dat | awk '{print $8}' | awk -F. '{print $1"."substr($2,0,8)}' `
 timeA=`sed '3q;d'     out-eSoln-0e/statReport.dat | awk '{print $5}'`
 waveA=`sort -k2 -n -r out-eSoln-0e/2D_out20.dat | sed -n '1p' | awk '{print $1}'`
 
