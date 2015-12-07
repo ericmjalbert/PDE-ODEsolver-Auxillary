@@ -7,7 +7,7 @@ TOTALSIM=$(ssh -p26 ${HOST}@${SERVER} \
              'cd $(find ~/Documents/ -name batch-results);\
              cd simulations;\
              simList=$(awk \
-               '"'"'{if (substr($1,0,1)!="#" && NR<end-1) print $2}'"'"'\
+               '"'"'{if (substr($1,0,1)!="#"&&NR<end-1&&NR>3) print $2}'"'"'\
                end=$(less ./run_batch.sh | wc -l) ./run_batch.sh);
              for i in $simList;\
                do sim=$(($sim + $(grep "^\s*bash" $i | wc -l)));\
@@ -23,6 +23,7 @@ checkProgress()
   else
     CURR=$(ssh -p26 ${HOST}@${SERVER} \
       'cd $(find ~/Documents/ -name batch-results);\
+      cd simulations;\
       echo $(ls out* -d | wc -l)')
     PROG=$(bc <<< "scale=2; 100*$CURR/$TOTALSIM")
     echo "Current Progress:"
@@ -110,7 +111,7 @@ showSimulationsMenu()
   echo ""
   for file in `ls -I "run_batch.sh" -I "parameterFiles" ./simulations`
   do
-    checkPound=`awk '{if (NR==c) print substr($1,0,1)}' c=$(($i + 1)) ./simulations/run_batch.sh`
+    checkPound=`awk '{if (NR==c) print substr($1,0,1)}' c=$(($i + 4)) ./simulations/run_batch.sh`
     if [ "$checkPound" = "#" ]; then
       echo "  $i) Ignored  - $file"
     else 
@@ -129,7 +130,7 @@ selectSimulation()
 
   read -p "Enter Selection: " choice
   if [ $choice -gt 0 -o $choice -lt $simCount ]; then
-    linenum=$(($choice + 1))
+    linenum=$(($choice + 4))
     checkPound=`awk '{if (NR==c) print substr($1,0,1)}' c=${linenum} ./simulations/run_batch.sh`
     if [ "$checkPound" == "#" ]; then
       sed -i "${linenum}s/^.//" ./simulations/run_batch.sh

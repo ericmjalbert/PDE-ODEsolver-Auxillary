@@ -1,24 +1,26 @@
 !----------------------------------------------------------------------
 ! Parameters
 !----------------------------------------------------------------------
-pSize     = 1025 
+pSize     = 513
 true2D    = 0             ! if 1 then prob is 2D, otherwise 3D  
+checkTrav = 0             ! if 1 then check for travelling wave
 depth     = 0.0390625     ! depth of innoculation site
 height    = 0.10          ! height of innoculation site
 innocPts  = 4             ! number of innoculation points for IC
 alpha     = 4             ! exponent in D(M)
 beta      = 4             ! exponent in D(M)
-nu        = 0.3
+nu        = 0.12
 kappa     = 0.01
-gama      = 0.50
-delta     = 0.00000001
-nOuts     = 20
-tEnd      = 40
+gama      = 0.80
+delta     = 0.000001
+nOuts     = 30
+tEnd      = 60
 tDel      = 0.0001         ! Change in time
 xDel      = 1/real(row)   ! Change in x
 e1        = 1.0e-8       ! Error 1 tolerence (linear solver)
 e2        = 1.0e-8       ! Error 2 tolerence (linear solver)
 eSoln     = 1.0e-8      ! Error between soln in single timestep
+eTrav     = 2.0e-3        ! Error for trav Wave Check
 nit       = n*100         ! Max number of iterations (lin. sol.)
 !----------------------------------------------------------------------
 !   Function Selections

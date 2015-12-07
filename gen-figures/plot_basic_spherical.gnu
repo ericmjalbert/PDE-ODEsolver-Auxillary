@@ -8,7 +8,7 @@ set pm3d
 set view map
 unset surf
 
-set zr[0.00001:1]
+set zr[0.001:1]
 
 set terminal post eps color enhanced font ',18'
 
@@ -16,11 +16,11 @@ set output "basic_spherical_M_t0.eps"
 splot 'out-basic-spherical/out1.dat' us 1:2:3 wi lines 
 
 set output "basic_spherical_M_t40.eps"
-splot 'out-basic-spherical/out21.dat' us 1:2:3 wi lines 
+splot 'out-basic-spherical/out17.dat' us 1:2:3 wi lines 
 
 set output "basic_spherical_C_t0.eps"
 splot 'out-basic-spherical/out1.dat' us 1:2:4 wi lines 
 
 set output "basic_spherical_C_t40.eps"
-splot 'out-basic-spherical/out21.dat' us 1:2:4 wi lines 
+splot 'out-basic-spherical/out17.dat' us 1:2:4 wi lines 
 

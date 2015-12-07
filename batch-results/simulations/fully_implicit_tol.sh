@@ -5,7 +5,7 @@ export OMP_NUM_THREADS=4
 dir_path=`find ~/Documents/ -name PDE-ODEsolver -type d`
 curr_dir=`pwd`
 
-cp ./parameterFiles/fully_implicit_tol.sh $dir_path/parameter.txt
+cp ./parameterFiles/fully_implicit_tol.txt $dir_path/parameter.txt
 cd $dir_path
 rm -r parameterParalOutput
 

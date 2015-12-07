@@ -1,29 +1,46 @@
 #!/bin/bash
 
-curr=`pwd`
-resu=`find ~/Documents -name batch-results -type d`
+curr=$(pwd)
+resu=$(find ~/Documents -name batch-results -type d)
 
 cp -r $resu/out-eSoln-* ./
 
-mv out-eSoln-0e/2D_out14.dat 0.tmp
-mv out-eSoln-1e/2D_out14.dat 1.tmp
-mv out-eSoln-2e/2D_out14.dat 2.tmp
-mv out-eSoln-3e/2D_out14.dat 3.tmp
-mv out-eSoln-4e/2D_out14.dat 4.tmp
-mv out-eSoln-5e/2D_out14.dat 5.tmp
-mv out-eSoln-6e/2D_out14.dat 6.tmp
-mv out-eSoln-7e/2D_out14.dat 7.tmp
-mv out-eSoln-8e/2D_out14.dat 8.tmp
-mv out-eSoln-9e/2D_out14.dat 9.tmp
-mv out-eSoln-10e/2D_out14.dat 10.tmp
-mv out-eSoln-11e/2D_out14.dat 11.tmp
-mv out-eSoln-12e/2D_out14.dat 12.tmp
-mv out-eSoln-13e/2D_out14.dat 13.tmp
-mv out-eSoln-14e/2D_out14.dat 14.tmp
+num=0
+# Grabs the highest numbered output.
+#   echo gives out-pXXX/2D_outYYY so the first sed gets rid 
+#   of everything before the last YYY The second sed grabs 
+#   remaining numbers. Because we want last num, sort in reverse
+#   Note that the last out is corrupt, so use head and tail to 
+#   grab the second to last output
+last=$(echo out-eSoln-0e/2D_out* |\
+       sed 's#out-eSoln-[0-9]*e/\(2D_out\|out\)##g' |\
+       sed 's#[^0-9 ]##g' |\
+       fmt -1 |\
+       sort -nr |\
+       head -n 2|\
+       tail -n 1)
 
-#Rscript norm_vs_best.R
-#mv results_norm.dat results_implicit.dat
-#
-#rm *.tmp
+for dir in out-eSoln-*
+do
+  num=$(echo "$dir" | sed 's#[^0-9]##g') # need to get number for indexing
+  mv "$dir"/2D_out"$last".dat "$num"-rev.tmp
+done 
 
+# reverse numbering so semi-implicit (first) is the 'best' for comparisons
+max=$(echo *tmp | sed 's#[^0-9 ]##g' | fmt -1 | sort -rn |head -1)
+for i in *tmp
+do
+  iNum=$(echo "$i" | sed 's#[^0-9 ]##g')
+  mv "$i" $(bc <<< "$max - $iNum").tmp
+done
+
+
+Rscript norm_vs_best.R
+
+# re-reverse ordering of results file to match tolerance numbering
+tac results_norm.dat > results_implicit.dat
+rm results_norm.dat
+
+rm *.tmp
+rm -r out-*
 

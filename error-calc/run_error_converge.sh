@@ -13,8 +13,8 @@ pNum=$(echo out-p* |\
        head -n 1)
 
 # Grabs the highest numbered output.
-#   echo gives out-p123/2D_out456.dat so the first sed gets rid 
-#   of everything before the last 456. The second sed grabs 
+#   echo gives out-pXXX/2D_outYYY so the first sed gets rid 
+#   of everything before the last YYY The second sed grabs 
 #   remaining numbers. Because we want last num, sort in reverse
 #   Note that the last out is corrupt, so use head and tail to 
 #   grab the second to last output

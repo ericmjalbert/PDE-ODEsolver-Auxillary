@@ -5,7 +5,7 @@ export OMP_NUM_THREADS=4
 dir_path=`find ~/Documents/ -name PDE-ODEsolver -type d`
 curr_dir=`pwd`
 
-cp ./parameterFiles/sim_basic_spherical.sh $dir_path/parameter.txt
+cp ./parameterFiles/sim_basic_spherical.txt $dir_path/parameter.txt
 cd $dir_path
 rm -r parameterParalOutput
 

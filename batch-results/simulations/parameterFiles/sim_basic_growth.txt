@@ -3,6 +3,7 @@
 !----------------------------------------------------------------------
 pSize     = 1025 
 true2D    = 0             ! if 1 then prob is 2D, otherwise 3D  
+checkTrav = 0             ! if 1 then check for travelling wave
 depth     = 0.0390625     ! depth of innoculation site
 height    = 0.10          ! height of innoculation site
 innocPts  = 4             ! number of innoculation points for IC
@@ -19,6 +20,7 @@ xDel      = 1/real(row)   ! Change in x
 e1        = 1.0e-8       ! Error 1 tolerence (linear solver)
 e2        = 1.0e-8       ! Error 2 tolerence (linear solver)
 eSoln     = 1.0e-8      ! Error between soln in single timestep
+eTrav     = 1.0e-2        ! Error for trav Wave Check
 nit       = n*100         ! Max number of iterations (lin. sol.)
 !----------------------------------------------------------------------
 !   Function Selections
