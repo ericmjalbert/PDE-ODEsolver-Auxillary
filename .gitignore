@@ -2,3 +2,4 @@
 /gen-figures/Figures
 /error-cal/out*
 *.tmp
+*.tar
